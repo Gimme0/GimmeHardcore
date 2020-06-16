@@ -1,0 +1,279 @@
+# Every function that comes with this plugin can be turned on/off in this config.
+# To keep things vanilla see the comments containing "Vanilla: ..." for the correct setting  to turn off
+# the corresponding function completely.
+
+
+
+# ----------------- ADVANCEMENTS -----------------
+
+# DISABLING VANILLA ADVANCEMENTS
+# If you want to disable vanilla advancements you can add everything in this https://pastebin.com/MSmcytSY
+# to your spigot.yml (covers all advancements as of the date indicated on the pastebin page).
+
+# Extra hardcore advancements.
+# These advancements are made with the recommended settings in mind.
+hardcore_advancements:
+  # If the custom advancements that come with this plugin should be used in game.
+  # Vanilla: false
+  enabled: false
+  # If the advancements should not show toasts or be announced in chat.
+  silent: false
+
+
+
+# ------------------ NIGHT SKIP ------------------
+
+# If players should not be able to skip the night by sleeping. If set to true, the last player that enters a bed when
+# everyone else on the server is asleep gets ejected right before entering deep sleep.
+# Vanilla: false
+night_skip_prevented: false
+
+# If an info message should be broadcast when a night skip was prevented. Happens only when everyone on the server is
+# trying to deep sleep at the same time. Good idea to prevent confusion why it didn't work.
+night_skip_prevented_broadcast: true
+
+
+
+# -------------------- RESPAWN --------------------
+
+# Respawn delay in seconds. Setting this to more than 0 means players have a countdown before being able to respawn.
+# Vanilla: 0
+respawn_delay: 0
+
+# If the vanilla death screen should be skipped automatically (and go directly to this plugin's respawn countdown screen).
+# It works as if the player clicked the respawn button (can be before the button shows up).
+respawn_auto: false
+# The delay in ticks (20 ticks/s) before the vanilla death screen should be skipped automatically.
+# If you set this too short it could look confusing when you die because you are used to seeing the normal death screen
+# first and there is a short loading time involved.
+# 0 means no vanilla death screen is seen at all.
+# 20 ticks is around the time the respawn button becomes clickable (not consistent).
+respawn_auto_delay: 20
+
+# Title and subtitle displayed on the screen when you are waiting to respawn.
+# %time% gets replaced with the time left to respawn (e.g. 123h 09m 45s, 4m 06s, 5s).
+respawn_screen_title: "Respawning In"
+respawn_screen_subtitle: "%time%"
+
+# Title and subtitle displayed when the respawn timer is finished.
+# This is shown until the player starts moving (and the gamemode is changed back from spectator).
+respawn_finished_title: "RESPAWNED"
+respawn_finished_subtitle: "Move to begin"
+
+# Maximum distance (radius in blocks) a dead player can move (in spectator mode) from their death location
+# (Must use dismount button first to be able to move).
+# 0 means no movement.
+# -1 means unrestricted movement (fly around the map like a normal spectator).
+respawn_spectator_max_distance: 0
+
+# If the respawn timer for all dead players should be displayed in the player list (e.g. "Steve | 4:59").
+respawn_timer_in_player_list: true
+
+
+
+# -------------------- MISCELLANEOUS --------------------
+
+# No natural health regeneration
+# Vanilla: false
+ultra_hardcore: false
+
+# Chance for each individual item in a dead player's inventory to drop. 0.0 means no drops.
+# Vanilla: 1.0
+item_drop_chance_on_death: 1.0
+
+# List of blocks that can not be broken except with tools listed after it above the specified y-level.
+# Default can be used to specify an allowed y-level for all other tools.
+unbreakable_blocks:
+  #stone:
+  #  default: 63
+  #  golden_pickaxe: 17
+  #diamond_ore:
+  #  default: 63
+
+# Blocks with modified drop rate during the specified time period.
+#
+# A full day is 24000 long.
+# Night is between 13000 - 23000.
+modified_drop_rate_cycle:
+  enabled: false
+  start_time: 23000
+  end_time: 13000
+  blocks:
+    acacia_log:   0.1
+    birch_log:    0.1
+    dark_oak_log: 0.1
+    jungle_log:   0.1
+    oak_log:      0.1
+    spruce_log:   0.1
+
+rose_bush:
+  # If this module should be enabled. False means nothing below has any effect.
+  enabled: false
+  # If the glistering melon slice recipe should use rose bushes instead of gold nuggets.
+  glistering_melon_recipe: true
+  #
+  # Rose bushes are hidden during the specified time period.
+  # A full day is 24000 long. Night is between 13000 - 23000.
+  # This part can be resource intensive depending on how often new chunks are loaded.
+  # Make sure your server can handle it before enabling, or play with the y-values/update_frequency for higher performance.
+  # Only blocks with a y-level between y_min and y_max will be hidden.
+  hidden_cycle:
+    # If this part-module should be enabled. False means nothing below has any effect.
+    enabled: true
+    start_time: 23000
+    end_time: 13000
+    # Min y level to search for rose bushes.
+    y_min: 63
+    # Max y level to search for rose bushes.
+    y_max: 100
+    # How often (in ticks) all rose bushes should be checked, both for time of day and validation.
+    update_frequency: 100
+
+# Modifiers for the amount of food points restored.
+# 1 means default, -1 means unconsumable, 0 means it can be consumed and affect saturation but doesn't restore food level.
+food_modifiers:
+  # The default modifier for food absent from the list below.
+  default: 1
+  # Food specific modifiers.
+  food:
+    #golden_apple:     1.0
+    #rotten_flesh:     1.0
+    #spider_eye:       1.0
+    #beetroot_soup:    0.5
+    #mushroom_stew:    0.5
+    #rabbit_stew:      0.5
+    #suspicious_stew:  0.5
+
+unstackable_items:
+  #- red_mushroom
+  #- brown_mushroom
+  #- beetroot
+
+# When a player attacks an entity in the Nether or steals a Nether Quartz, all Zombie Pigmen become angry.
+wrath_of_the_nether:
+  enabled: false
+  on_wrath_message:
+    title: ""
+    subtitle: "§cSomeone has disturbed the peace"
+  on_enter_nether_message:
+    title: ""
+    subtitle: "§cDon't disturb the locals"
+
+# With build protection enabled, players can't break blocks by hand and placed blocks fade after a certain duration.
+nether_build_protection:
+  # If placing/breaking blocks should be disabled in the nether.
+  enabled: false
+  # The type of block that expired blocks turn into before disappearing. Can be null to disable this feature.
+  convert_block: gravel
+  # The delay in seconds before turning placed blocks into the forementioned block. -1 means can't be placed,
+  # 0 means instant removal.
+  default_delay: 0
+  # Override values for specific blocks. Especially useful for setting the delay for the convert block.
+  block_specific_delay:
+    gravel:           0.5
+    tnt:              0 # Can still be primed by supplying power before the placement
+    oak_planks:       5
+    birch_planks:     5
+    spruce_planks:    5
+    jungle_planks:    5
+    acacia_planks:    5
+    dark_oak_planks:  5
+  # If all blocks without colliders should be allowed, in addition to the whitelists below.
+  allow_all_passable_blocks: true
+  # Blocks that can still be placed.
+  block_place_whitelist:
+  # Blocks that can still be broken.
+  block_break_whitelist:
+    - glowstone
+    - nether_quartz_ore
+  # Blocks that cannot be placed or broken, overriding the whitelists above.
+  # This is useful, for example, if you want to allow all passable blocks except a few.
+  block_blacklist:
+    - torch
+    - redstone_torch
+
+
+the_end:
+  # Entities that should spawn at the position of Ender Crystal explosions.
+  crystal_spawn_on_death:
+    BLAZE:
+      # Base amount to spawn.
+      base: 0 #3
+      # Extra spawns per player in The End.
+      extra: 0 #1.5
+      # Factor of the (base + extra) amount that the spawn amount can vary by.
+      # 0 would be no randomness. 0.3 would be random between 0.7x - 1.3x the amount.
+      variance: 0.5
+  # Entities spawn around active pillars. An active pillar is just an undestroyed Ender Crystal but the reference is
+  # about the obsidian towers that they spawn on top of.
+  spawn_around_active_pillar:
+    # If this feature should be enabled.
+    enabled: false
+    # Radius in blocks around a pillar that a player needs to be within for it to spawn.
+    activation_range: 30
+    # Amount of ticks between each spawn event.
+    spawn_interval: 20
+    # Types of spawners that can be selected for each pillar.
+    pillar_types:
+      1:
+        # Chance to be selected relative to the other pillar types.
+        weight: 0.3
+        # Max amount of entities that can be alive at the same time and with the same source pillar.
+        # Total = base + players * extra.
+        max_spawned_base: 8
+        max_spawned_extra: 2
+        # Entities that spawn around this pillar.
+        entities:
+          CREEPER:
+            # Base amount to spawn (if at least one nearby player). Decimals are converted to a chance to spawn an extra.
+            base: 0.08
+            # Extra spawns per nearby player.
+            extra: 0.02
+      2:
+        weight: 0.4
+        max_spawned_base: 8
+        max_spawned_extra: 2
+        entities:
+          WITHER_SKELETON:
+            base: 0.08
+            extra: 0.02
+      3:
+        weight: 0.3
+        max_spawned_base: 8
+        max_spawned_extra: 2
+        entities:
+          SKELETON:
+            base: 0.08
+            extra: 0.02
+
+
+
+# -------------------- MOBS --------------------
+
+# Factor to multiply the damage by when an entity gets damaged.
+#
+# The outermost keys in the list are the entities taking the damage. Any entity namespaced ID from
+# https://minecraft.gamepedia.com/Java_Edition_data_values#Entities can be used.
+#
+# The inner lists are the damage sources. The damage source can be either the damage cause, the entity doing the damage or
+# the item held in main hand (player only). If more than one of them has a value set for an entity, all of them will
+# affect the output damage.
+#
+# For entities: the same namespaced IDs from above.
+# For items: namespaced IDs from https://minecraft.gamepedia.com/Java_Edition_data_values.
+# For damage causes: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/event/entity/EntityDamageEvent.DamageCause.html.
+damage_taken_modifier:
+  default:
+    default: 1
+  #player:
+  #  zombie: 1.5
+  #zombie:
+  #  default: 0.5
+  #ghast:
+  #  arrow: 0.1
+  #  spectral_arrow: 0.1
+  #ender_dragon:
+  #  default: 0.5
+  #  arrow: 1
+  #  spectral_arrow: 1
+  #  BLOCK_EXPLOSION: 0.2 # Prevents the bed explosion trick

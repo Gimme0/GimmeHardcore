@@ -1,0 +1,1369 @@
+{
+    "main": {
+        "root": {
+            "display": {
+                "title": {
+                    "translate": "[H] Hardcore"
+                },
+                "description": {
+                    "translate": "Don't die"
+                },
+                "icon": {
+                    "item": "minecraft:black_wool"
+                },
+                "background": "minecraft:textures/block/black_wool.png",
+                "show_toast": false,
+                "announce_to_chat": false
+            },
+            "criteria": {
+                "auto": {
+                    "trigger": "minecraft:location"
+                }
+            }
+        },
+        "enter_the_nether": {
+            "parent": "hardcore:main/root",
+            "display": {
+                "title": {"translate":"This Isn't Heaven"},
+                "description": {"translate":"Enter the Nether"},
+                "icon": {
+                    "item": "minecraft:red_nether_bricks"
+                }
+            },
+            "criteria": {
+                "dimension": {
+                    "trigger": "minecraft:changed_dimension",
+                    "conditions": {
+                        "to": "the_nether"
+                    }
+                }
+            }
+        },
+        "obtain_wither_skeleton_skull": {
+            "parent": "hardcore:main/enter_the_nether",
+            "display": {
+                "title": {"translate":"Spooky Scary Skeleton"},
+                "description": {"translate":"Obtain a wither skeleton's skull"},
+                "icon": {
+                    "item": "minecraft:wither_skeleton_skull"
+                }
+            },
+            "criteria": {
+                "wither_skull": {
+                    "trigger": "minecraft:inventory_changed",
+                    "conditions": {
+                        "items": [
+                            {
+                                "item": "minecraft:wither_skeleton_skull"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        "kill_wither": {
+            "parent": "hardcore:main/obtain_wither_skeleton_skull",
+            "display": {
+                "title": {"translate":"Kill the Wither"},
+                "description": {"translate":"Kill the Wither"},
+                "icon": {
+                    "item": "minecraft:nether_star"
+                },
+                "frame": "goal"
+            },
+            "criteria": {
+                "kill": {
+                    "trigger": "minecraft:player_killed_entity",
+                    "conditions": {
+                        "entity": {
+                            "type": "wither"
+                        }
+                    }
+                }
+            }
+        },
+
+        "enter_the_end": {
+            "parent": "hardcore:main/root",
+            "display": {
+                "title": {"translate":"The Beginning of the End"},
+                "description": {"translate":"Enter the End"},
+                "icon": {
+                    "item": "minecraft:end_stone"
+                }
+            },
+            "criteria": {
+                "dimension": {
+                    "trigger": "minecraft:changed_dimension",
+                    "conditions": {
+                        "to": "the_end"
+                    }
+                }
+            }
+        },
+        "kill_ender_dragon": {
+            "parent": "hardcore:main/enter_the_end",
+            "display": {
+                "title": {"translate":"Free the End"},
+                "description": {"translate":"Slay the Ender Dragon"},
+                "icon": {
+                    "item": "minecraft:dragon_head"
+                }
+            },
+            "criteria": {
+                "kill": {
+                    "trigger": "minecraft:player_killed_entity",
+                    "conditions": {
+                        "entity": {
+                            "type": "ender_dragon"
+                        }
+                    }
+                },
+                "item": {
+                    "trigger": "minecraft:inventory_changed",
+                    "conditions": {
+                        "items": [
+                            {
+                                "item": "minecraft:dragon_egg"
+                            }
+                        ]
+                    }
+                }
+            },
+            "requirements": [
+                [
+                    "kill",
+                    "item"
+                ]
+            ]
+        },
+        "hold_the_egg": {
+            "parent": "hardcore:main/kill_ender_dragon",
+            "display": {
+                "title": {
+                    "translate": "The Next Generation"
+                },
+                "description": {
+                    "translate": "Hold the Dragon Egg"
+                },
+                "icon": {
+                    "item": "minecraft:dragon_egg"
+                }
+            },
+            "criteria": {
+                "item": {
+                    "trigger": "minecraft:inventory_changed",
+                    "conditions": {
+                        "items": [
+                            {
+                                "item": "minecraft:dragon_egg"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        "find_elytra": {
+            "parent": "hardcore:main/hold_the_egg",
+            "display": {
+                "title": {
+                    "translate": "Sky's the Limit"
+                },
+                "description": {
+                    "translate": "Find Elytra"
+                },
+                "icon": {
+                    "item": "minecraft:elytra"
+                }
+            },
+            "criteria": {
+                "item": {
+                    "trigger": "minecraft:inventory_changed",
+                    "conditions": {
+                        "items": [
+                            {
+                                "item": "minecraft:elytra"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+
+        "obtain_trident": {
+            "parent": "hardcore:main/root",
+            "display": {
+                "title": {
+                    "translate": "Aquaman"
+                },
+                "description": {
+                    "translate": "Obtain a trident from a Drowned"
+                },
+                "icon": {
+                    "item": "minecraft:trident"
+                }
+            },
+            "criteria": {
+                "trident": {
+                    "trigger": "minecraft:inventory_changed",
+                    "conditions": {
+                        "items": [
+                            {
+                                "item": "minecraft:trident"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        "kill_elder_guardian": {
+            "parent": "hardcore:main/obtain_trident",
+            "display": {
+                "title": {"translate":"The Deep End"},
+                "description": {"translate":"Defeat an Elder Guardian"},
+                "icon": {
+                    "item": "minecraft:sponge"
+                },
+                "frame": "goal"
+            },
+            "criteria": {
+                "kill": {
+                    "trigger": "minecraft:player_killed_entity",
+                    "conditions": {
+                        "entity": {
+                            "type": "elder_guardian"
+                        }
+                    }
+                }
+            }
+        },
+
+        "obtain_enchanted_golden_apple": {
+            "parent": "hardcore:main/root",
+            "display": {
+                "title": {
+                    "translate": "Rare Apple"
+                },
+                "description": {
+                    "translate": "Find an enchanted golden apple"
+                },
+                "icon": {
+                    "item": "minecraft:enchanted_golden_apple"
+                }
+            },
+            "criteria": {
+                "item": {
+                    "trigger": "minecraft:inventory_changed",
+                    "conditions": {
+                        "items": [
+                            {
+                                "item": "minecraft:enchanted_golden_apple"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+
+        "die": {
+            "parent": "hardcore:main/root",
+            "display": {
+                "icon": {
+                    "item": "minecraft:skeleton_skull"
+                },
+                "title": {"translate":"Eternal Slumber"},
+                "description": {"translate":"It's time to let go"},
+                "frame": "goal"
+            },
+            "criteria": {
+                "manual": {
+                    "trigger": "minecraft:impossible"
+                }
+            }
+        }
+    },
+    "gearing_up": {
+        "root": {
+            "display": {
+                "title": {
+                    "translate": "[H] Gearing Up"
+                },
+                "description": {
+                    "translate": "It's a process"
+                },
+                "icon": {
+                    "item": "minecraft:light_gray_wool"
+                },
+                "background": "minecraft:textures/block/light_gray_wool.png",
+                "show_toast": false,
+                "announce_to_chat": false
+            },
+            "criteria": {
+                "auto": {
+                    "trigger": "minecraft:location"
+                }
+            }
+        },
+        "pickaxe_wood": {
+            "parent": "hardcore:gearing_up/root",
+            "display": {
+                "title": {
+                    "translate": "Wooden Pickaxe"
+                },
+                "description": {
+                    "translate": "Craft a wooden pickaxe"
+                },
+                "icon": {
+                    "item": "minecraft:wooden_pickaxe"
+                }
+            },
+            "criteria": {
+                "item": {
+                    "trigger": "minecraft:inventory_changed",
+                    "conditions": {
+                        "items": [
+                            {
+                                "item": "minecraft:wooden_pickaxe"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        "pickaxe_stone": {
+            "parent": "hardcore:gearing_up/pickaxe_wood",
+            "display": {
+                "title": {
+                    "translate": "Stone Pickaxe"
+                },
+                "description": {
+                    "translate": "Craft a stone pickaxe"
+                },
+                "icon": {
+                    "item": "minecraft:stone_pickaxe"
+                }
+            },
+            "criteria": {
+                "item": {
+                    "trigger": "minecraft:inventory_changed",
+                    "conditions": {
+                        "items": [
+                            {
+                                "item": "minecraft:stone_pickaxe"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        "pickaxe_iron": {
+            "parent": "hardcore:gearing_up/pickaxe_stone",
+            "display": {
+                "title": {
+                    "translate": "Iron Pickaxe"
+                },
+                "description": {
+                    "translate": "Craft an iron pickaxe"
+                },
+                "icon": {
+                    "item": "minecraft:iron_pickaxe"
+                }
+            },
+            "criteria": {
+                "item": {
+                    "trigger": "minecraft:inventory_changed",
+                    "conditions": {
+                        "items": [
+                            {
+                                "item": "minecraft:iron_pickaxe"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        "pickaxe_diamond": {
+            "parent": "hardcore:gearing_up/pickaxe_iron",
+            "display": {
+                "title": {
+                    "translate": "Diamond Pickaxe"
+                },
+                "description": {
+                    "translate": "Craft a diamond pickaxe"
+                },
+                "icon": {
+                    "item": "minecraft:diamond_pickaxe"
+                }
+            },
+            "criteria": {
+                "item": {
+                    "trigger": "minecraft:inventory_changed",
+                    "conditions": {
+                        "items": [
+                            {
+                                "item": "minecraft:diamond_pickaxe"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        "pickaxe_enchanted": {
+            "parent": "hardcore:gearing_up/pickaxe_diamond",
+            "display": {
+                "title": {
+                    "translate": "Enchanted Pickaxe"
+                },
+                "description": {
+                    "translate": "Enchant a diamond pickaxe"
+                },
+                "icon": {
+                    "item": "minecraft:diamond_pickaxe",
+                    "nbt": "{Enchantments:[{id:\"minecraft:efficiency\",lvl:1}]}"
+                }
+            },
+            "criteria": {
+                "enchant": {
+                    "trigger": "minecraft:enchanted_item",
+                    "conditions": {
+                        "item": {
+                            "item": "minecraft:diamond_pickaxe"
+                        }
+                    }
+                }
+            }
+        },
+        "pickaxe_fortune_iii": {
+            "parent": "hardcore:gearing_up/pickaxe_enchanted",
+            "display": {
+                "title": {
+                    "translate": "Fortune III"
+                },
+                "description": {
+                    "translate": "Get a diamond pickaxe enchanted with Fortune III"
+                },
+                "icon": {
+                    "item": "minecraft:diamond_pickaxe",
+                    "nbt": "{Enchantments:[{id:\"minecraft:fortune\",lvl:3}]}"
+                },
+                "frame": "goal"
+            },
+            "criteria": {
+                "item": {
+                    "trigger": "minecraft:inventory_changed",
+                    "conditions": {
+                        "items": [
+                            {
+                                "item": "minecraft:diamond_pickaxe",
+                                "enchantments": [
+                                    {
+                                        "enchantment": "minecraft:fortune",
+                                        "levels": 3
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+
+        "weapon_sword_first": {
+            "parent": "hardcore:gearing_up/root",
+            "display": {
+                "title": {
+                    "translate": "First Sword"
+                },
+                "description": {
+                    "translate": "Craft your first sword"
+                },
+                "icon": {
+                    "item": "minecraft:stone_sword"
+                }
+            },
+            "criteria": {
+                "wood": {
+                    "trigger": "minecraft:inventory_changed",
+                    "conditions": {
+                        "items": [
+                            {
+                                "item": "minecraft:wooden_sword"
+                            }
+                        ]
+                    }
+                },
+                "stone": {
+                    "trigger": "minecraft:inventory_changed",
+                    "conditions": {
+                        "items": [
+                            {
+                                "item": "minecraft:stone_sword"
+                            }
+                        ]
+                    }
+                },
+                "iron": {
+                    "trigger": "minecraft:inventory_changed",
+                    "conditions": {
+                        "items": [
+                            {
+                                "item": "minecraft:iron_sword"
+                            }
+                        ]
+                    }
+                },
+                "gold": {
+                    "trigger": "minecraft:inventory_changed",
+                    "conditions": {
+                        "items": [
+                            {
+                                "item": "minecraft:golden_sword"
+                            }
+                        ]
+                    }
+                },
+                "diamond": {
+                    "trigger": "minecraft:inventory_changed",
+                    "conditions": {
+                        "items": [
+                            {
+                                "item": "minecraft:diamond_sword"
+                            }
+                        ]
+                    }
+                }
+            },
+            "requirements": [
+                [
+                    "wood",
+                    "stone",
+                    "iron",
+                    "gold",
+                    "diamond"
+                ]
+            ]
+        },
+        "weapon_sword_diamond": {
+            "parent": "hardcore:gearing_up/weapon_sword_first",
+            "display": {
+                "title": {
+                    "translate": "Diamond Sword"
+                },
+                "description": {
+                    "translate": "Craft a diamond sword"
+                },
+                "icon": {
+                    "item": "minecraft:diamond_sword"
+                }
+            },
+            "criteria": {
+                "item": {
+                    "trigger": "minecraft:inventory_changed",
+                    "conditions": {
+                        "items": [
+                            {
+                                "item": "minecraft:diamond_sword"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        "weapon_sword_enchanted": {
+            "parent": "hardcore:gearing_up/weapon_sword_diamond",
+            "display": {
+                "title": {
+                    "translate": "Enchanted Sword"
+                },
+                "description": {
+                    "translate": "Enchant a diamond sword"
+                },
+                "icon": {
+                    "item": "minecraft:diamond_sword",
+                    "nbt": "{Enchantments:[{id:\"minecraft:sharpness\",lvl:1}]}"
+                },
+                "frame": "goal"
+            },
+            "criteria": {
+                "enchant": {
+                    "trigger": "minecraft:enchanted_item",
+                    "conditions": {
+                        "item": {
+                            "item": "minecraft:diamond_sword"
+                        }
+                    }
+                }
+            }
+        },
+        "weapon_bow": {
+            "parent": "hardcore:gearing_up/weapon_sword_first",
+            "display": {
+                "title": {
+                    "translate": "Archer"
+                },
+                "description": {
+                    "translate": "Craft a bow or crossbow"
+                },
+                "icon": {
+                    "item": "minecraft:bow"
+                }
+            },
+            "criteria": {
+                "bow": {
+                    "trigger": "minecraft:inventory_changed",
+                    "conditions": {
+                        "items": [
+                            {
+                                "item": "minecraft:bow"
+                            }
+                        ]
+                    }
+                },
+                "crossbow": {
+                    "trigger": "minecraft:inventory_changed",
+                    "conditions": {
+                        "items": [
+                            {
+                                "item": "minecraft:crossbow"
+                            }
+                        ]
+                    }
+                }
+            },
+            "requirements": [
+                [
+                    "bow",
+                    "crossbow"
+                ]
+            ]
+        },
+        "weapon_bow_enchanted": {
+            "parent": "hardcore:gearing_up/weapon_bow",
+            "display": {
+                "title": {
+                    "translate": "Enchanted Bow"
+                },
+                "description": {
+                    "translate": "Enchant a bow or crossbow"
+                },
+                "icon": {
+                    "item": "minecraft:bow",
+                    "nbt": "{Enchantments:[{id:\"minecraft:power\",lvl:1}]}"
+                },
+                "frame": "goal"
+            },
+            "criteria": {
+                "bow": {
+                    "trigger": "minecraft:enchanted_item",
+                    "conditions": {
+                        "item": {
+                            "item": "minecraft:bow"
+                        }
+                    }
+                },
+                "crossbow": {
+                    "trigger": "minecraft:enchanted_item",
+                    "conditions": {
+                        "item": {
+                            "item": "minecraft:crossbow"
+                        }
+                    }
+                }
+            },
+            "requirements": [
+                [
+                    "bow",
+                    "crossbow"
+                ]
+            ]
+        },
+
+        "armor_shield": {
+            "parent": "hardcore:gearing_up/root",
+            "display": {
+                "title": {
+                    "translate": "Shield"
+                },
+                "description": {
+                    "translate": "Craft a shield"
+                },
+                "icon": {
+                    "item": "minecraft:shield"
+                }
+            },
+            "criteria": {
+                "item": {
+                    "trigger": "minecraft:inventory_changed",
+                    "conditions": {
+                        "items": [
+                            {
+                                "item": "minecraft:shield"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        "armor_iron": {
+            "parent": "hardcore:gearing_up/armor_shield",
+            "display": {
+                "title": {
+                    "translate": "Iron Armor Set"
+                },
+                "description": {
+                    "translate": "Get a full set of iron armor"
+                },
+                "icon": {
+                    "item": "minecraft:iron_chestplate"
+                }
+            },
+            "criteria": {
+                "set": {
+                    "trigger": "minecraft:inventory_changed",
+                    "conditions": {
+                        "items": [
+                            {"item": "minecraft:iron_helmet"},
+                            {"item": "minecraft:iron_chestplate"},
+                            {"item": "minecraft:iron_leggings"},
+                            {"item": "minecraft:iron_boots"}
+                        ]
+                    }
+                }
+            }
+        },
+        "armor_enchanted": {
+            "parent": "hardcore:gearing_up/armor_iron",
+            "display": {
+                "title": {
+                    "translate": "Enchanted Armor"
+                },
+                "description": {
+                    "translate": "Enchant a piece of iron or diamond armor"
+                },
+                "icon": {
+                    "item": "minecraft:iron_chestplate",
+                    "nbt": "{Enchantments:[{id:\"minecraft:protection\",lvl:1}]}"
+                }
+            },
+            "criteria": {
+                "diamond_helmet": {
+                    "trigger": "minecraft:enchanted_item",
+                    "conditions": {
+                        "item": {
+                            "item": "minecraft:diamond_helmet"
+                        }
+                    }
+                },
+                "diamond_chestplate": {
+                    "trigger": "minecraft:enchanted_item",
+                    "conditions": {
+                        "item": {
+                            "item": "minecraft:diamond_chestplate"
+                        }
+                    }
+                },
+                "diamond_leggings": {
+                    "trigger": "minecraft:enchanted_item",
+                    "conditions": {
+                        "item": {
+                            "item": "minecraft:diamond_leggings"
+                        }
+                    }
+                },
+                "diamond_boots": {
+                    "trigger": "minecraft:enchanted_item",
+                    "conditions": {
+                        "item": {
+                            "item": "minecraft:diamond_boots"
+                        }
+                    }
+                },
+                "iron_helmet": {
+                    "trigger": "minecraft:enchanted_item",
+                    "conditions": {
+                        "item": {
+                            "item": "minecraft:iron_helmet"
+                        }
+                    }
+                },
+                "iron_chestplate": {
+                    "trigger": "minecraft:enchanted_item",
+                    "conditions": {
+                        "item": {
+                            "item": "minecraft:iron_chestplate"
+                        }
+                    }
+                },
+                "iron_leggings": {
+                    "trigger": "minecraft:enchanted_item",
+                    "conditions": {
+                        "item": {
+                            "item": "minecraft:iron_leggings"
+                        }
+                    }
+                },
+                "iron_boots": {
+                    "trigger": "minecraft:enchanted_item",
+                    "conditions": {
+                        "item": {
+                            "item": "minecraft:iron_boots"
+                        }
+                    }
+                }
+            },
+            "requirements": [
+                [
+                    "diamond_helmet",
+                    "diamond_chestplate",
+                    "diamond_leggings",
+                    "diamond_boots",
+                    "iron_helmet",
+                    "iron_chestplate",
+                    "iron_leggings",
+                    "iron_boots"
+                ]
+            ]
+        },
+        "armor_diamond": {
+            "parent": "hardcore:gearing_up/armor_enchanted",
+            "display": {
+                "title": {
+                    "translate": "Diamond Armor Set"
+                },
+                "description": {
+                    "translate": "Get a full set of diamond armor"
+                },
+                "icon": {
+                    "item": "minecraft:diamond_chestplate"
+                }
+            },
+            "criteria": {
+                "set": {
+                    "trigger": "minecraft:inventory_changed",
+                    "conditions": {
+                        "items": [
+                            {"item": "minecraft:diamond_helmet"},
+                            {"item": "minecraft:diamond_chestplate"},
+                            {"item": "minecraft:diamond_leggings"},
+                            {"item": "minecraft:diamond_boots"}
+                        ]
+                    }
+                }
+            }
+        },
+        "armor_enchanted_set": {
+            "parent": "hardcore:gearing_up/armor_diamond",
+            "display": {
+                "title": {
+                    "translate": "Enchanted Set"
+                },
+                "description": {
+                    "translate": "Get a full set of enchanted diamond armor"
+                },
+                "icon": {
+                    "item": "minecraft:diamond_chestplate",
+                    "nbt": "{Enchantments:[{id:\"minecraft:protection\",lvl:4}]}"
+                },
+                "frame": "goal"
+            },
+            "criteria": {
+                "set": {
+                    "trigger": "minecraft:inventory_changed",
+                    "conditions": {
+                        "items": [
+                            {
+                                "item": "minecraft:diamond_helmet",
+                                "enchantments": [
+                                    {
+                                        "levels": {
+                                            "min": 1
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "item": "minecraft:diamond_chestplate",
+                                "enchantments": [
+                                    {
+                                        "levels": {
+                                            "min": 1
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "item": "minecraft:diamond_leggings",
+                                "enchantments": [
+                                    {
+                                        "levels": {
+                                            "min": 1
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "item": "minecraft:diamond_boots",
+                                "enchantments": [
+                                    {
+                                        "levels": {
+                                            "min": 1
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+
+        "golden_apple": {
+            "parent": "hardcore:gearing_up/root",
+            "display": {
+                "title": {
+                    "translate": "Golden Apple"
+                },
+                "description": {
+                    "translate": "Get a golden apple"
+                },
+                "icon": {
+                    "item": "minecraft:golden_apple"
+                }
+            },
+            "criteria": {
+                "item": {
+                    "trigger": "minecraft:inventory_changed",
+                    "conditions": {
+                        "items": [
+                            {
+                                "item": "minecraft:golden_apple"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "challenges": {
+        "root": {
+            "display": {
+                "title": {
+                    "translate": "[H] Challenges"
+                },
+                "description": {
+                    "translate": "Try your luck"
+                },
+                "icon": {
+                    "item": "minecraft:blue_wool"
+                },
+                "background": "minecraft:textures/block/blue_wool.png",
+                "show_toast": false,
+                "announce_to_chat": false
+            },
+            "criteria": {
+                "auto": {
+                    "trigger": "minecraft:location"
+                }
+            }
+        },
+        "kill_creeper_with_fists": {
+            "parent": "hardcore:challenges/root",
+            "display": {
+                "title": {
+                    "translate": "Tickle It"
+                },
+                "description": {
+                    "translate": "Kill a creeper with your bare hands"
+                },
+                "icon": {
+                    "item": "minecraft:creeper_head"
+                }
+            },
+            "criteria": {
+                "manual": {
+                    "trigger": "minecraft:impossible"
+                }
+            }
+        },
+
+        "kill_pigmen": {
+            "parent": "hardcore:challenges/root",
+            "display": {
+                "title": {
+                    "translate": "They're Coming"
+                },
+                "description": {
+                    "translate": "Kill 50 zombie pigmen within 5 minutes of entering the Nether (kills within 50 blocks are shared)"
+                },
+                "icon": {
+                    "item": "minecraft:golden_sword"
+                }
+            },
+            "criteria": {
+                "manual": {
+                    "trigger": "minecraft:impossible"
+                }
+            }
+        }
+    },
+    "exploring": {
+        "root": {
+            "display": {
+                "title": {
+                    "translate": "[H] Exploring"
+                },
+                "description": {
+                    "translate": "Around the world"
+                },
+                "icon": {
+                    "item": "minecraft:pink_wool"
+                },
+                "background": "minecraft:textures/block/pink_wool.png",
+                "show_toast": false,
+                "announce_to_chat": false
+            },
+            "criteria": {
+                "auto": {
+                    "trigger": "minecraft:location"
+                }
+            }
+        },
+        "exploring_mineshaft": {
+            "parent": "hardcore:exploring/root",
+            "display": {
+                "title": {
+                    "translate": "Exploring: Mineshaft"
+                },
+                "description": {
+                    "translate": "Find an abandoned mineshaft"
+                },
+                "icon": {
+                    "item": "minecraft:chest_minecart"
+                }
+            },
+            "criteria": {
+                "explore": {
+                    "trigger": "minecraft:location",
+                    "conditions": {
+                        "feature": "mineshaft"
+                    }
+                }
+            }
+        },
+        "exploring_fortress": {
+            "parent": "hardcore:exploring/exploring_mineshaft",
+            "display": {
+                "title": {
+                    "translate": "Exploring: Nether Fortress"
+                },
+                "description": {
+                    "translate": "Find a fortress in the Nether"
+                },
+                "icon": {
+                    "item": "minecraft:nether_bricks"
+                }
+            },
+            "criteria": {
+                "explore": {
+                    "trigger": "minecraft:location",
+                    "conditions": {
+                        "feature": "fortress"
+                    }
+                }
+            }
+        },
+
+        "exploring_stronghold": {
+            "parent": "hardcore:exploring/root",
+            "display": {
+                "title": {
+                    "translate": "Exploring: Stronghold"
+                },
+                "description": {
+                    "translate": "Find a stronghold"
+                },
+                "icon": {
+                    "item": "minecraft:end_portal_frame"
+                }
+            },
+            "criteria": {
+                "explore": {
+                    "trigger": "minecraft:location",
+                    "conditions": {
+                        "feature": "stronghold"
+                    }
+                }
+            }
+        },
+        "exploring_end_city": {
+            "parent": "hardcore:exploring/exploring_stronghold",
+            "display": {
+                "title": {
+                    "translate": "Exploring: End City"
+                },
+                "description": {
+                    "translate": "Find an end city"
+                },
+                "icon": {
+                    "item": "minecraft:purpur_block"
+                }
+            },
+            "criteria": {
+                "explore": {
+                    "trigger": "minecraft:location",
+                    "conditions": {
+                        "feature": "endcity"
+                    }
+                }
+            }
+        },
+
+        "exploring_swamp_hut": {
+            "parent": "hardcore:exploring/root",
+            "display": {
+                "title": {
+                    "translate": "Exploring: Swamp Hut"
+                },
+                "description": {
+                    "translate": "Find a swamp hut"
+                },
+                "icon": {
+                    "item": "minecraft:cauldron"
+                }
+            },
+            "criteria": {
+                "explore": {
+                    "trigger": "minecraft:location",
+                    "conditions": {
+                        "feature": "swamp_hut"
+                    }
+                }
+            }
+        },
+        "exploring_igloo": {
+            "parent": "hardcore:exploring/exploring_swamp_hut",
+            "display": {
+                "title": {
+                    "translate": "Exploring: Igloo"
+                },
+                "description": {
+                    "translate": "Find an igloo"
+                },
+                "icon": {
+                    "item": "minecraft:snow_block"
+                }
+            },
+            "criteria": {
+                "explore": {
+                    "trigger": "minecraft:location",
+                    "conditions": {
+                        "feature": "igloo"
+                    }
+                }
+            }
+        },
+
+        "exploring_desert_pyramid": {
+            "parent": "hardcore:exploring/root",
+            "display": {
+                "title": {
+                    "translate": "Exploring: Desert Pyramid"
+                },
+                "description": {
+                    "translate": "Find a pyramid in the desert"
+                },
+                "icon": {
+                    "item": "minecraft:chiseled_sandstone"
+                }
+            },
+            "criteria": {
+                "explore": {
+                    "trigger": "minecraft:location",
+                    "conditions": {
+                        "feature": "desert_pyramid"
+                    }
+                }
+            }
+        },
+        "exploring_jungle_pyramid": {
+            "parent": "hardcore:exploring/exploring_desert_pyramid",
+            "display": {
+                "title": {
+                    "translate": "Exploring: Jungle Temple"
+                },
+                "description": {
+                    "translate": "Find a temple in the jungle"
+                },
+                "icon": {
+                    "item": "minecraft:mossy_cobblestone"
+                }
+            },
+            "criteria": {
+                "explore": {
+                    "trigger": "minecraft:location",
+                    "conditions": {
+                        "feature": "jungle_pyramid"
+                    }
+                }
+            }
+        },
+
+        "exploring_shipwreck": {
+            "parent": "hardcore:exploring/root",
+            "display": {
+                "title": {
+                    "translate": "Exploring: Shipwreck"
+                },
+                "description": {
+                    "translate": "Find a shipwreck"
+                },
+                "icon": {
+                    "item": "minecraft:spruce_boat"
+                }
+            },
+            "criteria": {
+                "explore": {
+                    "trigger": "minecraft:location",
+                    "conditions": {
+                        "feature": "shipwreck"
+                    }
+                }
+            }
+        },
+        "exploring_buried_treasure": {
+            "parent": "hardcore:exploring/exploring_shipwreck",
+            "display": {
+                "title": {
+                    "translate": "Exploring: Buried Treasure"
+                },
+                "description": {
+                    "translate": "Find a buried treasure"
+                },
+                "icon": {
+                    "item": "minecraft:chest"
+                }
+            },
+            "criteria": {
+                "explore": {
+                    "trigger": "minecraft:location",
+                    "conditions": {
+                        "feature": "buried_treasure"
+                    }
+                }
+            }
+        },
+
+        "exploring_ocean_ruins": {
+            "parent": "hardcore:exploring/root",
+            "display": {
+                "title": {
+                    "translate": "Exploring: Ocean Ruins"
+                },
+                "description": {
+                    "translate": "Find underwater ruins"
+                },
+                "icon": {
+                    "item": "minecraft:cracked_stone_bricks"
+                }
+            },
+            "criteria": {
+                "explore": {
+                    "trigger": "minecraft:location",
+                    "conditions": {
+                        "feature": "ocean_ruin"
+                    }
+                }
+            }
+        },
+        "exploring_monument": {
+            "parent": "hardcore:exploring/exploring_ocean_ruins",
+            "display": {
+                "title": {
+                    "translate": "Exploring: Ocean Monument"
+                },
+                "description": {
+                    "translate": "Find an ocean monument"
+                },
+                "icon": {
+                    "item": "minecraft:prismarine_bricks"
+                }
+            },
+            "criteria": {
+                "explore": {
+                    "trigger": "minecraft:location",
+                    "conditions": {
+                        "feature": "monument"
+                    }
+                }
+            }
+        },
+
+        "exploring_village": {
+            "parent": "hardcore:exploring/root",
+            "display": {
+                "title": {
+                    "translate": "Exploring: Village"
+                },
+                "description": {
+                    "translate": "Find a village"
+                },
+                "icon": {
+                    "item": "minecraft:oak_door"
+                }
+            },
+            "criteria": {
+                "explore": {
+                    "trigger": "minecraft:location",
+                    "conditions": {
+                        "feature": "village"
+                    }
+                }
+            }
+        },
+
+        "exploring_pillager_outpost": {
+            "parent": "hardcore:exploring/root",
+            "display": {
+                "title": {
+                    "translate": "Exploring: Pillager Outpost"
+                },
+                "description": {
+                    "translate": "Find a pillager outpost"
+                },
+                "icon": {
+                    "item": "minecraft:dark_oak_planks"
+                }
+            },
+            "criteria": {
+                "explore": {
+                    "trigger": "minecraft:location",
+                    "conditions": {
+                        "feature": "pillager_outpost"
+                    }
+                }
+            }
+        },
+        "exploring_mansion": {
+            "parent": "hardcore:exploring/exploring_pillager_outpost",
+            "display": {
+                "title": {
+                    "translate": "Exploring: Woodland Mansion"
+                },
+                "description": {
+                    "translate": "Find a woodland mansion"
+                },
+                "icon": {
+                    "item": "minecraft:dark_oak_log"
+                }
+            },
+            "criteria": {
+                "explore": {
+                    "trigger": "minecraft:location",
+                    "conditions": {
+                        "feature": "mansion"
+                    }
+                }
+            }
+        }
+    }
+}

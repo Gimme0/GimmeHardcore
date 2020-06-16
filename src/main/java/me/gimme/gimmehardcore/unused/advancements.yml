@@ -1,0 +1,50 @@
+main:
+    root:
+        display:
+            title: [H] Hardcore
+            description: Don't die
+            icon: minecraft:black_wool
+            background: minecraft:black_wool
+        criteria:
+            auto:
+                trigger: minecraft:location
+    obtain_trident:
+        parent: root
+        display:
+            title: Aquaman
+            description: Obtain a trident from a Drowned
+            icon: minecraft:trident
+        criteria:
+            obtain_trident:
+                trigger: minecraft:inventory_changed
+                conditions:
+                    items:
+                        item: minecraft:trident
+gearing_up:
+    root:
+        display:
+            title: [H] Gearing Up
+            description: It's a process
+            icon: minecraft:light_gray_wool
+            background: minecraft:light_gray_wool
+    obtain_wooden_pickaxe:
+        parent: root
+        display:
+            title: Wood cuts stone
+            description: Obtain a wooden pickaxe
+            icon: minecraft:wooden_pickaxe
+        criteria:
+            obtain_wooden_pickaxe:
+                trigger: minecraft:inventory_changed
+                conditions:
+                    items:
+                        - item: minecraft:wooden_pickaxe
+    obtain_wooden_pickaxe:
+        parent: obtain_wooden_pickaxe
+        display:
+            title: Wood cuts stone
+            description: Obtain a wooden pickaxe
+            icon: minecraft:wooden_pickaxe
+        criteria:
+            manual:
+                trigger: minecraft:impossible
