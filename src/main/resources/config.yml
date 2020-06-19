@@ -149,7 +149,7 @@ unstackable_items:
   #- brown_mushroom
   #- beetroot
 
-# When a player attacks an entity in the Nether or steals a Nether Quartz, all Zombie Pigmen become angry.
+# When a player attacks an entity in the Nether or steals a Nether Quartz, all Zombified Piglins become angry.
 wrath_of_the_nether:
   enabled: false
   on_wrath_message:
@@ -186,11 +186,13 @@ nether_build_protection:
   block_break_whitelist:
     - glowstone
     - nether_quartz_ore
+    - ancient_debris
   # Blocks that cannot be placed or broken, overriding the whitelists above.
   # This is useful, for example, if you want to allow all passable blocks except a few.
   block_blacklist:
     - torch
     - redstone_torch
+    - soul_torch
 
 
 the_end:

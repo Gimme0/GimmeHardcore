@@ -78,16 +78,16 @@ public class WrathOfTheNether implements Listener {
     }
 
     private void activateWrathOfTheNether(@NotNull World world) {
-        if (angerAllPigmen(world)) {
+        if (angerAllZombifiedPiglins(world)) {
             world.getPlayers().forEach(this::sendOnWrathMessage);
         }
     }
 
-    private boolean angerAllPigmen(@NotNull World world) {
+    private boolean angerAllZombifiedPiglins(@NotNull World world) {
         int angry = 0;
         int nonAngry = 0;
 
-        for (PigZombie pigZombie : world.getEntitiesByClass(PigZombie.class)) {
+        for (PigZombie pigZombie : world.getEntitiesByClass(PigZombie.class)) { //TODO 1.16: check if PigZombie changed name
             if (pigZombie.isAngry()) angry++;
             else nonAngry++;
             pigZombie.setAngry(true);
