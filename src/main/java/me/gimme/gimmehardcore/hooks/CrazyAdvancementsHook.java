@@ -3,7 +3,6 @@ package me.gimme.gimmehardcore.hooks;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.*;
 import eu.endercentral.crazy_advancements.manager.AdvancementManager;
-import me.gimme.gimmehardcore.advancements.Completer;
 import me.gimme.gimmehardcore.advancements.crazyadvancements.Advancement;
 import me.gimme.gimmehardcore.utils.JsonUtils;
 import org.bukkit.Bukkit;
@@ -27,17 +26,16 @@ import java.nio.file.Paths;
 import java.util.*;
 
 public class CrazyAdvancementsHook implements Listener {
+    private static final String ADVANCEMENTS_DIRECTORY = "advancements";
 
     private Plugin plugin;
     private AdvancementManager manager;
 
-    private String advancementsDirectory;
     private Set<String> namespaces = new HashSet<>();
 
-    public CrazyAdvancementsHook(@NotNull Plugin plugin, @NotNull String advancementsDirectory) {
+    public CrazyAdvancementsHook(@NotNull Plugin plugin) {
         this.plugin = plugin;
         this.manager = AdvancementManager.getNewAdvancementManager();
-        this.advancementsDirectory = advancementsDirectory;
     }
 
     public void registerAdvancements(@NotNull List<Advancement> advancements) {
@@ -59,6 +57,12 @@ public class CrazyAdvancementsHook implements Listener {
         return advancement.getCrazyAdvancement().isGranted(player);
     }
 
+    public void onDisable() {
+        for (Player player : plugin.getServer().getOnlinePlayers()) {
+            saveProgress(player);
+        }
+    }
+
     @EventHandler(priority = EventPriority.MONITOR)
     private void onPlayerJoin(PlayerJoinEvent event) {
         new BukkitRunnable() {
@@ -74,13 +78,11 @@ public class CrazyAdvancementsHook implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     private void onPlayerQuit(PlayerQuitEvent event) {
-        for (String namespace : namespaces) {
-            saveProgress(event.getPlayer(), namespace);
-        }
+        saveProgress(event.getPlayer());
         manager.removePlayer(event.getPlayer());
     }
 
-    private void loadProgress(Player player, String namespace) {
+    private void loadProgress(@NotNull Player player, @NotNull String namespace) {
         if (!existsSaveFile(player, namespace)) return;
 
         Map<String, List<String>> progress = getProgress(player, namespace);
@@ -97,7 +99,7 @@ public class CrazyAdvancementsHook implements Listener {
         }
     }
 
-    private Map<String, List<String>> getProgress(Player player, String namespace) {
+    private Map<String, List<String>> getProgress(@NotNull Player player, @NotNull String namespace) {
         try {
             FileReader reader = new FileReader(getSavePath(player, namespace).toString());
             JsonElement element = new JsonParser().parse(reader);
@@ -111,26 +113,33 @@ public class CrazyAdvancementsHook implements Listener {
         }
     }
 
-    private void saveProgress(Player player, String namespace) {
+    private void saveProgress(@NotNull Player player) {
+        for (String namespace : namespaces) {
+            saveProgress(player, namespace);
+        }
+    }
+
+    private void saveProgress(@NotNull Player player, @NotNull String namespace) {
         String json = JsonUtils.toPrettyFormat(manager.getProgressJSON(player, namespace));
 
         try {
             Path path = getSavePath(player, namespace);
             Files.createDirectories(path.getParent());
             Files.write(path, json.getBytes());
+            Bukkit.getLogger().info("saved at path: " + path.toString()); // TODO: remove
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private boolean existsSaveFile(Player player, String namespace) {
+    private boolean existsSaveFile(@NotNull Player player, @NotNull String namespace) {
         File saveFile = getSavePath(player, namespace).toFile();
         return saveFile.exists() && saveFile.isFile();
     }
 
-    private Path getSavePath(Player player, String namespace) {
+    private Path getSavePath(@NotNull Player player, @NotNull String namespace) {
         return Paths.get(plugin.getDataFolder().getAbsolutePath()
-                + File.separator + advancementsDirectory
+                + File.separator + ADVANCEMENTS_DIRECTORY
                 + File.separator + namespace
                 + File.separator + player.getUniqueId() + ".json");
     }
