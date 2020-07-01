@@ -87,10 +87,27 @@ public class WrathOfTheNether implements Listener {
         int angry = 0;
         int nonAngry = 0;
 
-        for (PigZombie pigZombie : world.getEntitiesByClass(PigZombie.class)) { //TODO 1.16: check if PigZombie changed name
+        for (Entity entity : world.getEntities()) {
+            if (!entity.getType().equals(EntityType.ZOMBIFIED_PIGLIN)) continue;
+            PigZombie pigZombie = (PigZombie) entity;
+
             if (pigZombie.isAngry()) angry++;
             else nonAngry++;
             pigZombie.setAngry(true);
+
+            // Set the closest player as the zombified piglin's target
+            Player closest = null;
+            double closestDistanceSquared = -1;
+            for (Player player : world.getPlayers()) {
+                double distanceSquared = pigZombie.getLocation().distanceSquared(player.getLocation());
+
+                if (closest == null || distanceSquared < closestDistanceSquared); {
+                    closest = player;
+                    closestDistanceSquared = distanceSquared;
+                }
+            }
+
+            if (closest != null) pigZombie.setTarget(closest);
         }
 
         return nonAngry > angry;

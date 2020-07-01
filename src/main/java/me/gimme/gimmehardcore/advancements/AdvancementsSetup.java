@@ -224,18 +224,15 @@ public class AdvancementsSetup {
                 "Diamond Armor",
                 "An expensive upgrade",
                 Material.DIAMOND_CHESTPLATE)
-                .setFrame(Advancement.Frame.GOAL) // TODO 1.16: remove goal frame
                 .addCompleter(new ObtainCompleter(Material.DIAMOND_HELMET, Material.DIAMOND_CHESTPLATE, Material.DIAMOND_LEGGINGS, Material.DIAMOND_BOOTS)));
 
-        // TODO 1.16: add netheriteArmor advancement
-        /*Advancement netheriteArmor = add(new Advancement(
+        Advancement netheriteArmor = add(new Advancement(
                 diamondArmor,
                 "Netherite Armor",
                 "The Dark Knight",
-                Material.DIAMOND_CHESTPLATE)
+                Material.NETHERITE_CHESTPLATE)
                 .setFrame(Advancement.Frame.GOAL)
                 .addCompleter(new ObtainCompleter(Material.NETHERITE_HELMET, Material.NETHERITE_CHESTPLATE, Material.NETHERITE_LEGGINGS, Material.NETHERITE_BOOTS)));
-        */
 
         ItemStack enchantedArmorIcon = new ItemStack(Material.IRON_CHESTPLATE);
         enchantedArmorIcon.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);

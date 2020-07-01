@@ -2,6 +2,7 @@ package me.gimme.gimmehardcore;
 
 import me.gimme.gimmehardcore.advancements.AdvancementManager;
 import me.gimme.gimmehardcore.crafting.RecipeModification;
+import me.gimme.gimmehardcore.hooks.CrazyAdvancementsHook;
 import me.gimme.gimmehardcore.listeners.*;
 import me.gimme.gimmehardcore.respawn.RespawnDelay;
 import me.gimme.gimmehardcore.listeners.DeathDropDisabler;
@@ -91,6 +92,7 @@ public final class GimmeHardcore extends JavaPlugin {
     private NetherBuildProtection netherBuildProtection;
     private NightRoseBush nightRoseBush;
     private RecipeModification recipeModification;
+    private CrazyAdvancementsHook crazyAdvancementsHook;
 
     @Override
     public void onEnable() {
@@ -98,6 +100,7 @@ public final class GimmeHardcore extends JavaPlugin {
         netherBuildProtection = new NetherBuildProtection(this, getConfig());
         nightRoseBush = new NightRoseBush(this, getConfig());
         recipeModification = new RecipeModification(this, getServer(), getConfig());
+        crazyAdvancementsHook = new CrazyAdvancementsHook(this);
 
         initConfig();
         initCommands();
@@ -120,6 +123,7 @@ public final class GimmeHardcore extends JavaPlugin {
         respawnDelay.onDisable();
         netherBuildProtection.onDisable();
         nightRoseBush.onDisable();
+        crazyAdvancementsHook.onDisable();
     }
 
     private void initConfig() {
@@ -176,7 +180,7 @@ public final class GimmeHardcore extends JavaPlugin {
 
     private void setupAdvancements() {
         if (getConfig().getBoolean(CONFIG_HARDCORE_ADVANCEMENTS_ENABLED)) {
-            new AdvancementManager(this).setupAdvancements();
+            new AdvancementManager(this, crazyAdvancementsHook).setupAdvancements();
         }
     }
 

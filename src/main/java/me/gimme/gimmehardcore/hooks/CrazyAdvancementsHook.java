@@ -126,7 +126,6 @@ public class CrazyAdvancementsHook implements Listener {
             Path path = getSavePath(player, namespace);
             Files.createDirectories(path.getParent());
             Files.write(path, json.getBytes());
-            Bukkit.getLogger().info("saved at path: " + path.toString()); // TODO: remove
         } catch (IOException e) {
             e.printStackTrace();
         }

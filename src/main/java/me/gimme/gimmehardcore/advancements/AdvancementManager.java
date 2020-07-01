@@ -11,16 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdvancementManager {
-    private static final String ADVANCEMENTS_DIRECTORY = "advancements";
 
     private Plugin plugin;
     private CrazyAdvancementsHook crazyAdvancementsHook;
 
     private boolean silent;
 
-    public AdvancementManager(@NotNull Plugin plugin) {
+    public AdvancementManager(@NotNull Plugin plugin, @NotNull CrazyAdvancementsHook crazyAdvancementsHook) {
         this.plugin = plugin;
-        this.crazyAdvancementsHook = new CrazyAdvancementsHook(plugin, ADVANCEMENTS_DIRECTORY);
+        this.crazyAdvancementsHook = crazyAdvancementsHook;
         plugin.getServer().getPluginManager().registerEvents(crazyAdvancementsHook, plugin);
 
         this.silent = plugin.getConfig().getBoolean(GimmeHardcore.CONFIG_HARDCORE_ADVANCEMENTS_SILENT);
